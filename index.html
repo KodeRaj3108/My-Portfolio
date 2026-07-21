@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>K Pruthvi Raj — Backend Software Engineer | .NET, PostgreSQL, AWS</title>
+<meta name="description" content="K Pruthvi Raj is a backend software engineer with 4+ years building scalable multi-tenant APIs in .NET Core, PostgreSQL and AWS across real estate and fleet management systems.">
+<meta name="theme-color" content="#12141a">
+
+<!-- Open Graph -->
+<meta property="og:title" content="K Pruthvi Raj — Backend Software Engineer">
+<meta property="og:description" content="Backend-focused engineer building scalable, multi-tenant Web APIs in .NET Core, PostgreSQL and AWS.">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg: #12141a;
+    --panel: #191c23;
+    --panel-2: #1f232b;
+    --border: #2a2e38;
+    --text: #edebe6;
+    --text-dim: #8b909c;
+    --text-faint: #5c6270;
+    --accent: #e8a33d;
+    --accent-soft: rgba(232,163,61,0.12);
+    --accent2: #5fb8b0;
+    --accent2-soft: rgba(95,184,176,0.12);
+    --radius: 10px;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --maxw: 1120px;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--sans);
+    line-height:1.6;
+    font-size:16px;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size:64px 64px;
+    opacity:0.12;
+    pointer-events:none;
+    z-index:0;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 20%, transparent 75%);
+  }
+
+  a{color:inherit; text-decoration:none;}
+  ul{list-style:none;}
+  img{max-width:100%; display:block;}
+
+  ::selection{background:var(--accent); color:#12141a;}
+
+  .wrap{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:0 28px;
+    position:relative;
+    z-index:1;
+  }
+
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--accent2);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:18px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:18px; height:1px;
+    background:var(--accent2);
+    display:inline-block;
+  }
+
+  h1,h2,h3{
+    font-family:var(--mono);
+    font-weight:600;
+    letter-spacing:-0.01em;
+    color:var(--text);
+  }
+
+  section{
+    position:relative;
+    z-index:1;
+    padding:96px 0;
+    border-bottom:1px solid var(--border);
+    scroll-margin-top:76px;
+  }
+  section:last-of-type{border-bottom:none;}
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:sticky; top:0;
+    z-index:50;
+    backdrop-filter:blur(10px);
+    background:rgba(18,20,26,0.82);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-inner{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:16px 28px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .nav-logo{
+    font-family:var(--mono);
+    font-weight:700;
+    font-size:15px;
+    color:var(--text);
+  }
+  .nav-logo span{color:var(--accent);}
+  .nav-links{
+    display:flex;
+    gap:28px;
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--text-dim);
+  }
+  .nav-links a{transition:color .2s ease;}
+  .nav-links a:hover{color:var(--accent2);}
+  .nav-cta{
+    font-family:var(--mono);
+    font-size:13px;
+    padding:8px 16px;
+    border:1px solid var(--accent);
+    color:var(--accent);
+    border-radius:6px;
+    transition:all .2s ease;
+    white-space:nowrap;
+  }
+  .nav-cta:hover{background:var(--accent); color:#12141a;}
+  .nav-toggle{display:none;}
+
+  @media (max-width:760px){
+    .nav-links{display:none;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:100px 0 90px;
+    border-bottom:1px solid var(--border);
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:56px;
+    align-items:start;
+  }
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr;}
+  }
+
+  .hero h1{
+    font-size:clamp(34px, 5vw, 52px);
+    line-height:1.12;
+    margin-bottom:18px;
+  }
+  .hero h1 .accent{color:var(--accent);}
+  .hero-role{
+    font-family:var(--sans);
+    font-size:19px;
+    color:var(--text-dim);
+    margin-bottom:26px;
+    max-width:52ch;
+  }
+  .hero-tagline{
+    font-family:var(--mono);
+    font-size:14px;
+    color:var(--accent2);
+    border-left:2px solid var(--accent2);
+    padding-left:14px;
+    margin-bottom:34px;
+  }
+  .hero-actions{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:36px;}
+  .btn{
+    font-family:var(--mono);
+    font-size:13.5px;
+    padding:12px 22px;
+    border-radius:6px;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+  }
+  .btn-primary{background:var(--accent); color:#12141a; font-weight:600;}
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 8px 20px -6px var(--accent-soft);}
+  .btn-outline{border:1px solid var(--border); color:var(--text);}
+  .btn-outline:hover{border-color:var(--accent2); color:var(--accent2); transform:translateY(-2px);}
+
+  .hero-meta{
+    display:flex;
+    gap:22px;
+    flex-wrap:wrap;
+    font-family:var(--mono);
+    font-size:12.5px;
+    color:var(--text-faint);
+  }
+  .hero-meta a{color:var(--text-dim); border-bottom:1px dotted var(--text-faint);}
+  .hero-meta a:hover{color:var(--accent2); border-color:var(--accent2);}
+
+  /* Terminal panel */
+  .terminal{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    overflow:hidden;
+    box-shadow:0 20px 50px -20px rgba(0,0,0,0.5);
+  }
+  .terminal-bar{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:12px 16px;
+    border-bottom:1px solid var(--border);
+    background:var(--panel-2);
+  }
+  .dot{width:10px; height:10px; border-radius:50%;}
+  .dot:nth-child(1){background:#e8746b;}
+  .dot:nth-child(2){background:#e8c23d;}
+  .dot:nth-child(3){background:#5fb87d;}
+  .terminal-title{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--text-faint);
+    margin-left:8px;
+  }
+  .terminal-body{
+    padding:20px 18px;
+    font-family:var(--mono);
+    font-size:13px;
+    min-height:280px;
+    color:var(--text-dim);
+  }
+  .terminal-body .line{
+    white-space:pre-wrap;
+    margin-bottom:7px;
+    opacity:0;
+    animation:fadeIn .3s forwards;
+  }
+  .terminal-body .ok{color:var(--accent2);}
+  .terminal-body .path{color:var(--text);}
+  .terminal-body .method{color:var(--accent);}
+  .cursor{
+    display:inline-block;
+    width:7px; height:14px;
+    background:var(--accent2);
+    vertical-align:middle;
+    animation:blink 1s step-end infinite;
+  }
+  @keyframes blink{50%{opacity:0;}}
+  @keyframes fadeIn{to{opacity:1;}}
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns:1.3fr 0.7fr;
+    gap:60px;
+  }
+  @media (max-width:860px){ .about-grid{grid-template-columns:1fr;} }
+  .about-body p{
+    color:var(--text-dim);
+    font-size:16.5px;
+    margin-bottom:18px;
+    max-width:64ch;
+  }
+  .about-body strong{color:var(--text); font-weight:600;}
+
+  .stat-block{
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    background:var(--panel);
+  }
+  .stat-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    padding:16px 18px;
+    border-bottom:1px solid var(--border);
+  }
+  .stat-row:last-child{border-bottom:none;}
+  .stat-label{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--text-faint);
+    text-transform:uppercase;
+    letter-spacing:.08em;
+  }
+  .stat-value{
+    font-family:var(--mono);
+    font-size:15px;
+    color:var(--accent);
+    font-weight:600;
+    text-align:right;
+  }
+
+  /* ---------- SECTION HEADS ---------- */
+  .section-head{
+    margin-bottom:48px;
+    max-width:70ch;
+  }
+  .section-head h2{
+    font-size:clamp(24px,3.4vw,32px);
+    margin-bottom:12px;
+  }
+  .section-head p{color:var(--text-dim); font-size:15.5px;}
+
+  /* ---------- SKILLS (schema table) ---------- */
+  .schema{
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    overflow:hidden;
+  }
+  .schema-head{
+    display:grid;
+    grid-template-columns:220px 1fr;
+    background:var(--panel-2);
+    font-family:var(--mono);
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+    color:var(--text-faint);
+    padding:12px 20px;
+    border-bottom:1px solid var(--border);
+  }
+  .schema-group{
+    display:grid;
+    grid-template-columns:220px 1fr;
+    border-bottom:1px solid var(--border);
+  }
+  .schema-group:last-child{border-bottom:none;}
+  .schema-group:hover{background:rgba(255,255,255,0.015);}
+  .schema-key{
+    padding:18px 20px;
+    font-family:var(--mono);
+    font-size:13.5px;
+    color:var(--accent2);
+    border-right:1px solid var(--border);
+  }
+  .schema-key small{display:block; color:var(--text-faint); font-size:11px; margin-top:4px; font-family:var(--sans);}
+  .schema-values{
+    padding:16px 20px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    align-content:flex-start;
+  }
+  .chip{
+    font-family:var(--mono);
+    font-size:12.5px;
+    padding:6px 12px;
+    border-radius:5px;
+    background:var(--panel);
+    border:1px solid var(--border);
+    color:var(--text);
+  }
+  @media (max-width:640px){
+    .schema-head, .schema-group{grid-template-columns:1fr;}
+    .schema-key{border-right:none; border-bottom:1px solid var(--border); padding-bottom:10px;}
+  }
+
+  /* ---------- EXPERIENCE ---------- */
+  .job{
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:32px;
+    background:var(--panel);
+  }
+  .job-top{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-bottom:8px;
+    align-items:baseline;
+  }
+  .job-role{font-size:19px; font-weight:600;}
+  .job-dates{
+    font-family:var(--mono);
+    font-size:12.5px;
+    color:var(--accent);
+    white-space:nowrap;
+  }
+  .job-company{color:var(--text-dim); font-size:14.5px; margin-bottom:22px;}
+  .job-company span{color:var(--text-faint);}
+  .job ul{display:grid; gap:13px;}
+  .job li{
+    position:relative;
+    padding-left:22px;
+    color:var(--text-dim);
+    font-size:15px;
+  }
+  .job li::before{
+    content:"→";
+    position:absolute; left:0; top:0;
+    color:var(--accent2);
+    font-family:var(--mono);
+  }
+  .job li strong{color:var(--text); font-weight:600;}
+
+  /* ---------- PROJECTS ---------- */
+  .project-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(310px,1fr));
+    gap:20px;
+  }
+  .project-card{
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    background:var(--panel);
+    padding:26px;
+    display:flex;
+    flex-direction:column;
+    transition:transform .2s ease, border-color .2s ease;
+  }
+  .project-card:hover{transform:translateY(-4px); border-color:var(--accent2);}
+  .project-tag{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--accent);
+    background:var(--accent-soft);
+    padding:4px 10px;
+    border-radius:4px;
+    display:inline-block;
+    margin-bottom:14px;
+    align-self:flex-start;
+  }
+  .project-card h3{font-size:17px; margin-bottom:6px; font-family:var(--sans); font-weight:700;}
+  .project-role{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--text-faint);
+    margin-bottom:14px;
+  }
+  .project-card ul{display:grid; gap:9px; margin-bottom:18px; flex-grow:1;}
+  .project-card li{
+    font-size:14px;
+    color:var(--text-dim);
+    padding-left:16px;
+    position:relative;
+  }
+  .project-card li::before{
+    content:"•";
+    position:absolute; left:0; color:var(--accent2);
+  }
+  .project-link{
+    font-family:var(--mono);
+    font-size:12.5px;
+    color:var(--text-faint);
+    border-top:1px solid var(--border);
+    padding-top:14px;
+    font-style:italic;
+  }
+
+  /* ---------- EDUCATION ---------- */
+  .edu-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
+    gap:20px;
+  }
+  .edu-card, .cert-card{
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:24px;
+    background:var(--panel);
+  }
+  .edu-card h3, .cert-card h3{font-size:16px; font-family:var(--sans); font-weight:700; margin-bottom:6px;}
+  .edu-meta{font-family:var(--mono); font-size:12.5px; color:var(--accent2); margin-bottom:10px;}
+  .edu-detail{color:var(--text-dim); font-size:14px;}
+  .cert-skills{
+    margin-top:14px;
+    display:flex; flex-wrap:wrap; gap:6px;
+  }
+  .cert-skills .chip{font-size:11px; padding:4px 9px;}
+
+  /* ---------- CONTACT ---------- */
+  .contact-wrap{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+  }
+  @media (max-width:760px){ .contact-wrap{grid-template-columns:1fr;} }
+  .contact-list{display:grid; gap:16px;}
+  .contact-item{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    padding:16px 18px;
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    background:var(--panel);
+    transition:border-color .2s ease;
+  }
+  .contact-item:hover{border-color:var(--accent);}
+  .contact-item .k{
+    font-family:var(--mono);
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    color:var(--text-faint);
+    width:80px;
+    flex-shrink:0;
+  }
+  .contact-item .v{font-size:14.5px; color:var(--text);}
+
+  .contact-cta{
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    background:linear-gradient(160deg, var(--panel), var(--panel-2));
+    padding:36px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+  .contact-cta h3{font-size:22px; margin-bottom:14px; font-family:var(--sans);}
+  .contact-cta p{color:var(--text-dim); font-size:15px; margin-bottom:24px;}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    padding:36px 0;
+    position:relative; z-index:1;
+  }
+  .footer-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:14px;
+    font-family:var(--mono);
+    font-size:12.5px;
+    color:var(--text-faint);
+  }
+  .footer-links{display:flex; gap:20px;}
+  .footer-links a:hover{color:var(--accent2);}
+  .back-to-top{color:var(--text-dim);}
+  .back-to-top:hover{color:var(--accent);}
+
+  /* reveal on scroll */
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1; transform:none;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+    .reveal{opacity:1; transform:none;}
+  }
+
+  @media (max-width:600px){
+    section{padding:64px 0;}
+    .hero{padding:64px 0 56px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="nav-logo">k<span>.</span>pruthvi<span>_</span>raj</a>
+    <nav class="nav-links">
+      <a href="#about">about</a>
+      <a href="#skills">skills</a>
+      <a href="#experience">experience</a>
+      <a href="#projects">projects</a>
+      <a href="#education">education</a>
+      <a href="#contact">contact</a>
+    </nav>
+    <a href="#contact" class="nav-cta">Contact →</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">backend software engineer · hyderabad, india</div>
+        <h1>K Pruthvi Raj</h1>
+        <p class="hero-role">I design and ship scalable, multi-tenant Web APIs — the kind that keep working quietly in production while the business grows around them.</p>
+        <div class="hero-tagline">"Backend systems that scale without drama."</div>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="K_Pruthvi_Raj_Resume.pdf" download>⬇ Download Resume</a>
+          <a class="btn btn-outline" href="#contact">Contact Me</a>
+        </div>
+        <div class="hero-meta">
+          <span>4+ yrs experience</span>
+          <span>·</span>
+          <span>.NET Core / PostgreSQL / AWS</span>
+          <span>·</span>
+          <a href="https://github.com/KodeRaj3108" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://linkedin.com/in/pruthvi-raj-k-b13143104" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+
+      <div class="terminal" aria-hidden="true">
+        <div class="terminal-bar">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <span class="terminal-title">production.log — tail -f</span>
+        </div>
+        <div class="terminal-body" id="termBody"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap about-grid">
+      <div>
+        <div class="eyebrow">about</div>
+        <h2 class="reveal">Engineer by trade, systems thinker by training</h2>
+        <div class="about-body" style="margin-top:24px;">
+          <p class="reveal">I'm a backend-focused software engineer with <strong>4+ years</strong> of experience designing and shipping scalable, multi-tenant Web APIs. My work spans the <strong>real estate</strong> and <strong>fleet management</strong> sectors — two domains where data integrity and uptime aren't optional.</p>
+          <p class="reveal">My core toolkit is <strong>.NET Core, PostgreSQL, and AWS</strong>. I've architected multi-tenant schemas from the ground up, tuned production queries under real load, and built real-time ingestion services that turn raw telemetry into structured, usable data.</p>
+          <p class="reveal">Before backend engineering, I trained as a <strong>mechanical engineer</strong> with a specialization in Energy Systems (M.Tech, CGPA 9.47) — a background that shows up in how I approach systems: as things with inputs, constraints, and measurable output, not just code.</p>
+        </div>
+      </div>
+      <div class="stat-block reveal">
+        <div class="stat-row"><span class="stat-label">Experience</span><span class="stat-value">4+ years</span></div>
+        <div class="stat-row"><span class="stat-label">Focus</span><span class="stat-value">Backend / APIs</span></div>
+        <div class="stat-row"><span class="stat-label">Stack</span><span class="stat-value">.NET · PostgreSQL · AWS</span></div>
+        <div class="stat-row"><span class="stat-label">Domains</span><span class="stat-value">RealEstate · Fleet</span></div>
+        <div class="stat-row"><span class="stat-label">Based in</span><span class="stat-value">Hyderabad, IN</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">skills</div>
+        <h2 class="reveal">Stack, laid out like a schema</h2>
+        <p class="reveal">Grouped the way I'd model them in a database — because that's usually how I end up thinking about them.</p>
+      </div>
+
+      <div class="schema reveal">
+        <div class="schema-head"><span>field</span><span>values</span></div>
+
+        <div class="schema-group">
+          <div class="schema-key">core_stack<small>language & framework</small></div>
+          <div class="schema-values">
+            <span class="chip">C#</span><span class="chip">.NET Core</span><span class="chip">ASP.NET Web API</span><span class="chip">Entity Framework Core</span>
+          </div>
+        </div>
+
+        <div class="schema-group">
+          <div class="schema-key">data_layer<small>storage & querying</small></div>
+          <div class="schema-values">
+            <span class="chip">PostgreSQL</span><span class="chip">SQL</span><span class="chip">Query execution plan tuning</span>
+          </div>
+        </div>
+
+        <div class="schema-group">
+          <div class="schema-key">cloud_infra<small>deployment & delivery</small></div>
+          <div class="schema-values">
+            <span class="chip">AWS S3</span><span class="chip">AWS Elastic Beanstalk</span><span class="chip">Cloudflare</span>
+          </div>
+        </div>
+
+        <div class="schema-group">
+          <div class="schema-key">tooling<small>workflow & scheduling</small></div>
+          <div class="schema-values">
+            <span class="chip">Quartz.NET</span><span class="chip">Git</span><span class="chip">Postman</span>
+          </div>
+        </div>
+
+        <div class="schema-group">
+          <div class="schema-key">also_ships<small>frontend & cross-platform</small></div>
+          <div class="schema-values">
+            <span class="chip">TypeScript</span><span class="chip">Blazor</span><span class="chip">.NET MAUI</span>
+          </div>
+        </div>
+
+        <div class="schema-group">
+          <div class="schema-key">exploring<small>beginner level</small></div>
+          <div class="schema-values">
+            <span class="chip">Generative AI Foundations</span><span class="chip">Prompt Engineering</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">experience</div>
+        <h2 class="reveal">Where the work happened</h2>
+      </div>
+
+      <div class="job reveal">
+        <div class="job-top">
+          <span class="job-role">Software Developer</span>
+          <span class="job-dates">May 2021 — Jul 2025</span>
+        </div>
+        <div class="job-company">DataSpeaks Services Pvt. Ltd. <span>· Hyderabad, India</span></div>
+        <ul>
+          <li><strong>Architected multi-tenant RESTful APIs</strong> using ASP.NET Core and Entity Framework Core, serving multiple production clients from a shared codebase.</li>
+          <li><strong>Designed PostgreSQL schemas and ERDs</strong> that held up under real-world scaling, keeping data consistent across tenants.</li>
+          <li><strong>Tuned query execution plans</strong> on high-frequency endpoints, cutting response times where it mattered most.</li>
+          <li><strong>Integrated AWS S3 and Cloudflare</strong> to decouple media storage from application logic and reduce image load latency.</li>
+          <li><strong>Built ASP.NET Identity-based auth</strong> with role-based access control to secure multi-client microservice deployments.</li>
+          <li><strong>Shipped a real-time GPS/OBD ingestion service</strong>, decoding proprietary hexadecimal telemetry into structured PostgreSQL records.</li>
+          <li><strong>Automated reporting with Quartz.NET</strong>, replacing manual report delivery with scheduled pipelines.</li>
+          <li><strong>Owned deployments on AWS Elastic Beanstalk</strong>, coordinating release scope and timelines end-to-end.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">projects</div>
+        <h2 class="reveal">Things I've built</h2>
+        <p class="reveal">A mix of production systems and independent builds — spanning multi-tenant SaaS, IoT-style ingestion, and cross-platform apps.</p>
+      </div>
+
+      <div class="project-grid">
+        <div class="project-card reveal">
+          <span class="project-tag">Multi-tenant SaaS</span>
+          <h3>StageXPS — Real Estate CRM Platform</h3>
+          <div class="project-role">Lead Developer</div>
+          <ul>
+            <li>Full-scale platform covering CRM, finance, and invoicing for real estate operations.</li>
+            <li>Modeled 15+ entities via Visual Paradigm ERDs for clean multi-tenant isolation.</li>
+            <li>Integrated AWS S3 + Cloudflare for document and media handling.</li>
+          </ul>
+          <div class="project-link">[Add project link here]</div>
+        </div>
+
+        <div class="project-card reveal">
+          <span class="project-tag">Inventory / IoT</span>
+          <h3>Archd — Warehouse Management System</h3>
+          <div class="project-role">Developer</div>
+          <ul>
+            <li>Real-time tracking for RFID-tagged inventory across staging areas.</li>
+            <li>Role-based access control via ASP.NET Identity for warehouse operations security.</li>
+          </ul>
+          <div class="project-link">[Add project link here]</div>
+        </div>
+
+        <div class="project-card reveal">
+          <span class="project-tag">Telemetry / IoT</span>
+          <h3>Fleet Management — GPS/OBD Telemetry Service</h3>
+          <div class="project-role">Developer</div>
+          <ul>
+            <li>Real-time ingestion service parsing and decoding hexadecimal GPS/OBD packets.</li>
+            <li>Automated Quartz.NET pipeline to retrieve and email historical vehicle data.</li>
+          </ul>
+          <div class="project-link">[Add project link here]</div>
+        </div>
+
+        <div class="project-card reveal">
+          <span class="project-tag">Cross-platform</span>
+          <h3>Alumni Social Media App</h3>
+          <div class="project-role">Developer</div>
+          <ul>
+            <li>Cross-platform .NET MAUI app for iOS and Android.</li>
+            <li>Registration, news feeds, and geolocation-based proximity features.</li>
+          </ul>
+          <div class="project-link">[Add project link here]</div>
+        </div>
+
+        <div class="project-card reveal">
+          <span class="project-tag">Desktop</span>
+          <h3>VoD Meter Desktop Application</h3>
+          <div class="project-role">Developer</div>
+          <ul>
+            <li>Blazor desktop application using the .NET SerialPort API.</li>
+            <li>Reads and exports live data streams from detonation meters.</li>
+          </ul>
+          <div class="project-link">[Add project link here]</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">education & certifications</div>
+        <h2 class="reveal">Foundations</h2>
+      </div>
+
+      <div class="edu-grid">
+        <div class="edu-card reveal">
+          <h3>M.Tech, Energy Systems (Mechanical Engineering)</h3>
+          <div class="edu-meta">JNTU, Hyderabad · 2021</div>
+          <div class="edu-detail">CGPA 9.47</div>
+        </div>
+        <div class="edu-card reveal">
+          <h3>B.Tech, Mechanical Engineering</h3>
+          <div class="edu-meta">Aurora's Scientific & Technological Institute, Hyderabad · 2016</div>
+          <div class="edu-detail">70.3%</div>
+        </div>
+        <div class="cert-card reveal">
+          <h3>Generative AI Foundations & Prompt Engineering</h3>
+          <div class="edu-meta">GenAI Masterminds, Outskill · July 2026</div>
+          <div class="edu-detail">Beginner-level certification covering LLM fundamentals.</div>
+          <div class="cert-skills">
+            <span class="chip">Generative AI</span>
+            <span class="chip">Prompt Engineering</span>
+            <span class="chip">LLMs</span>
+            <span class="chip">Transformer Architecture</span>
+            <span class="chip">Tokenization</span>
+            <span class="chip">Embeddings</span>
+            <span class="chip">Context Engineering</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">contact</div>
+        <h2 class="reveal">Let's talk</h2>
+        <p class="reveal">Open to backend engineering roles, freelance builds, and collaborations where clean architecture actually matters.</p>
+      </div>
+
+      <div class="contact-wrap">
+        <div class="contact-list reveal">
+          <div class="contact-item">
+            <span class="k">Email</span>
+            <a class="v" href="mailto:pruthvikode3108@gmail.com">pruthvikode3108@gmail.com</a>
+          </div>
+          <div class="contact-item">
+            <span class="k">Phone</span>
+            <a class="v" href="tel:+919705701581">+91 97057 01581</a>
+          </div>
+          <div class="contact-item">
+            <span class="k">Location</span>
+            <span class="v">Hyderabad, India</span>
+          </div>
+          <div class="contact-item">
+            <span class="k">LinkedIn</span>
+            <a class="v" href="https://linkedin.com/in/pruthvi-raj-k-b13143104" target="_blank" rel="noopener">linkedin.com/in/pruthvi-raj-k-b13143104</a>
+          </div>
+          <div class="contact-item">
+            <span class="k">GitHub</span>
+            <a class="v" href="https://github.com/KodeRaj3108" target="_blank" rel="noopener">github.com/KodeRaj3108</a>
+          </div>
+        </div>
+
+        <div class="contact-cta reveal">
+          <h3>Have a role or project in mind?</h3>
+          <p>I usually reply within a day. Email is the fastest way to reach me — or grab the full resume for the details.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="mailto:pruthvikode3108@gmail.com">Email Me →</a>
+            <a class="btn btn-outline" href="K_Pruthvi_Raj_Resume.pdf" download>Download Resume</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span>© 2026 K Pruthvi Raj. Built with intent, not a template.</span>
+    <div class="footer-links">
+      <a href="https://github.com/KodeRaj3108" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://linkedin.com/in/pruthvi-raj-k-b13143104" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="#top" class="back-to-top">↑ Top</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Terminal log animation
+  const lines = [
+    { m: 'POST', p: '/api/v1/tenants/{id}/vehicles/telemetry', s: '200 OK', t: '42ms' },
+    { m: 'GET',  p: '/api/v1/tenants/{id}/reports/scheduled',  s: '200 OK', t: '18ms' },
+    { m: 'PUT',  p: '/api/v1/auth/roles/assign',               s: '200 OK', t: '9ms'  },
+    { m: 'POST', p: '/api/v1/media/upload → s3://client-assets', s: '201 Created', t: '61ms' },
+    { m: 'GET',  p: '/api/v1/crm/leads?tenant=stagexps',        s: '200 OK', t: '23ms' },
+    { m: 'JOB',  p: 'quartz.net → vehicle_report_dispatch',     s: 'completed', t: '—' },
+    { m: 'GET',  p: '/api/v1/fleet/gps?decode=hex',             s: '200 OK', t: '31ms' },
+  ];
+
+  const termBody = document.getElementById('termBody');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function renderLine(entry, delay){
+    const el = document.createElement('div');
+    el.className = 'line';
+    el.innerHTML = `<span class="method">${entry.m}</span> <span class="path">${entry.p}</span> → <span class="ok">${entry.s}</span> <span style="color:var(--text-faint)">${entry.t}</span>`;
+    el.style.animationDelay = reduceMotion ? '0s' : delay + 'ms';
+    if(reduceMotion) el.style.opacity = '1';
+    termBody.appendChild(el);
+  }
+
+  if(termBody){
+    lines.forEach((entry, i) => renderLine(entry, i * 260));
+    setTimeout(() => {
+      const cursorLine = document.createElement('div');
+      cursorLine.className = 'line';
+      cursorLine.style.opacity = '1';
+      cursorLine.innerHTML = 'tail -f production.log<span class="cursor"></span>';
+      termBody.appendChild(cursorLine);
+    }, lines.length * 260 + 200);
+  }
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window && !reduceMotion){
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('in'));
+  }
+</script>
+
+</body>
+</html>
