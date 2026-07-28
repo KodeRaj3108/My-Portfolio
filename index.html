@@ -38,6 +38,14 @@
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
 
+  button{
+    font-family:inherit;
+    background:none;
+    border:none;
+    cursor:pointer;
+    color:inherit;
+  }
+
   body{
     background:var(--bg);
     color:var(--text);
@@ -138,8 +146,24 @@
     font-size:13px;
     color:var(--text-dim);
   }
-  .nav-links a{transition:color .2s ease;}
-  .nav-links a:hover{color:var(--accent2);}
+  .nav-links button{
+    text-transform:capitalize;
+    position:relative;
+    padding-bottom:4px;
+    transition:color .2s ease;
+  }
+  .nav-links button:hover{color:var(--accent2);}
+  .nav-links button::after{
+    content:"";
+    position:absolute;
+    left:0; bottom:0;
+    width:0%;
+    height:1px;
+    background:var(--accent);
+    transition:width .25s ease;
+  }
+  .nav-links button.active{color:var(--accent);}
+  .nav-links button.active::after{width:100%;}
   .nav-cta{
     font-family:var(--mono);
     font-size:13px;
@@ -577,16 +601,16 @@
 
 <header class="nav">
   <div class="nav-inner">
-    <a href="#top" class="nav-logo">k<span>.</span>pruthvi<span>_</span>raj</a>
+    <button data-scroll="top" class="nav-logo">k<span>.</span>pruthvi<span>_</span>raj</button>
     <nav class="nav-links">
-      <a href="#about">about</a>
-      <a href="#skills">skills</a>
-      <a href="#experience">experience</a>
-      <a href="#projects">projects</a>
-      <a href="#education">education</a>
-      <a href="#contact">contact</a>
+      <button data-scroll="about">about</button>
+      <button data-scroll="skills">skills</button>
+      <button data-scroll="experience">experience</button>
+      <button data-scroll="projects">projects</button>
+      <button data-scroll="education">education</button>
+      <button data-scroll="contact">contact</button>
     </nav>
-    <a href="#contact" class="nav-cta">Contact →</a>
+    <button data-scroll="contact" class="nav-cta">Contact →</button>
   </div>
 </header>
 
@@ -602,7 +626,7 @@
         <div class="hero-tagline">"Backend systems that scale without drama."</div>
         <div class="hero-actions">
           <a class="btn btn-primary" href="K_Pruthvi_Raj_Resume.pdf" download>⬇ Download Resume</a>
-          <a class="btn btn-outline" href="#contact">Contact Me</a>
+          <button class="btn btn-outline" data-scroll="contact">Contact Me</button>
         </div>
         <div class="hero-meta">
           <span>4+ yrs experience</span>
@@ -750,7 +774,6 @@
             <li>Modeled 15+ entities via Visual Paradigm ERDs for clean multi-tenant isolation.</li>
             <li>Integrated AWS S3 + Cloudflare for document and media handling.</li>
           </ul>
-          <div class="project-link">[Add project link here]</div>
         </div>
 
         <div class="project-card reveal">
@@ -761,7 +784,6 @@
             <li>Real-time tracking for RFID-tagged inventory across staging areas.</li>
             <li>Role-based access control via ASP.NET Identity for warehouse operations security.</li>
           </ul>
-          <div class="project-link">[Add project link here]</div>
         </div>
 
         <div class="project-card reveal">
@@ -772,7 +794,6 @@
             <li>Real-time ingestion service parsing and decoding hexadecimal GPS/OBD packets.</li>
             <li>Automated Quartz.NET pipeline to retrieve and email historical vehicle data.</li>
           </ul>
-          <div class="project-link">[Add project link here]</div>
         </div>
 
         <div class="project-card reveal">
@@ -783,7 +804,6 @@
             <li>Cross-platform .NET MAUI app for iOS and Android.</li>
             <li>Registration, news feeds, and geolocation-based proximity features.</li>
           </ul>
-          <div class="project-link">[Add project link here]</div>
         </div>
 
         <div class="project-card reveal">
@@ -794,7 +814,6 @@
             <li>Blazor desktop application using the .NET SerialPort API.</li>
             <li>Reads and exports live data streams from detonation meters.</li>
           </ul>
-          <div class="project-link">[Add project link here]</div>
         </div>
       </div>
     </div>
@@ -890,7 +909,7 @@
     <div class="footer-links">
       <a href="https://github.com/KodeRaj3108" target="_blank" rel="noopener">GitHub</a>
       <a href="https://linkedin.com/in/pruthvi-raj-k-b13143104" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="#top" class="back-to-top">↑ Top</a>
+      <button data-scroll="top" class="back-to-top">↑ Top</button>
     </div>
   </div>
 </footer>
@@ -945,6 +964,101 @@
   } else {
     revealEls.forEach(el => el.classList.add('in'));
   }
+
+  // Smooth-scroll all internal nav/scroll buttons via JS. Using buttons
+  // (not <a href="#...">) means there is no hash navigation at all, so no
+  // "leaving this page" prompts in any embedded/sandboxed context.
+  document.querySelectorAll('[data-scroll]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.getAttribute('data-scroll');
+      const targetEl = document.getElementById(targetId);
+      if(targetEl){
+        targetEl.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // Scrollspy: highlight active nav link + sync URL hash while scrolling.
+  //
+  // Deliberately NOT using IntersectionObserver here: it only fires on
+  // threshold *crossings*, and a fast scroll (fling, PageDown, trackpad flick)
+  // can move a short section fully through the observed band between two
+  // ticks, so the crossing event never fires and the highlight lags or skips.
+  // Instead we directly read section positions on every animation frame tied
+  // to scroll/resize — a plain position snapshot can't miss anything,
+  // regardless of how fast or slow the user scrolls.
+  const navLinks = Array.from(document.querySelectorAll('.nav-links button'));
+  const sections = navLinks
+    .map(link => document.getElementById(link.getAttribute('data-scroll')))
+    .filter(Boolean);
+
+  function setActiveLink(id){
+    navLinks.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('data-scroll') === id);
+    });
+    if(history.replaceState && window.location.hash !== '#' + id){
+      try{
+        history.replaceState(null, '', '#' + id);
+      }catch(e){
+        // Some sandboxed/embedded contexts (e.g. iframe previews) block history
+        // rewrites entirely — fail silently, active-link highlighting still works.
+      }
+    }
+  }
+
+  // computeActiveId is pulled out as a pure function of (sections, scrollY,
+  // viewportHeight, docHeight) so it can be unit-tested in isolation.
+  function computeActiveId(sectionEls, scrollY, viewportHeight, docHeight){
+    const refLine = viewportHeight * 0.35; // matches the sticky-nav visual "focus" line
+    const nearBottom = scrollY + viewportHeight >= docHeight - 2;
+
+    if(nearBottom && sectionEls.length){
+      return sectionEls[sectionEls.length - 1].id; // last section always wins at page bottom
+    }
+
+    let current = sectionEls[0] ? sectionEls[0].id : null;
+    for(const sec of sectionEls){
+      const top = sec.getBoundingClientRect().top;
+      if(top <= refLine){
+        current = sec.id;
+      } else {
+        break; // sections are in document order, so we can stop early
+      }
+    }
+    return current;
+  }
+
+  let tickScheduled = false;
+  function scheduleSpyUpdate(){
+    if(tickScheduled) return;
+    tickScheduled = true;
+    requestAnimationFrame(() => {
+      tickScheduled = false;
+      if(!sections.length) return;
+      const id = computeActiveId(
+        sections,
+        window.scrollY,
+        window.innerHeight,
+        document.documentElement.scrollHeight
+      );
+      if(id) setActiveLink(id);
+    });
+  }
+
+  window.addEventListener('scroll', scheduleSpyUpdate, { passive: true });
+  window.addEventListener('resize', scheduleSpyUpdate);
+  scheduleSpyUpdate(); // set correct state on initial load (e.g. deep link / refresh mid-page)
+
+  // Keep sampling for a moment after a nav click too, since scrollIntoView's
+  // smooth animation itself fires scroll events, but a final nudge after it
+  // settles guarantees the end state is exactly right even on slow devices.
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      setTimeout(scheduleSpyUpdate, 60);
+      setTimeout(scheduleSpyUpdate, 400);
+      setTimeout(scheduleSpyUpdate, 800);
+    });
+  });
 </script>
 
 </body>
