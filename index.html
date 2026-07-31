@@ -5,7 +5,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>K Pruthvi Raj — Backend Software Engineer | .NET, PostgreSQL, AWS</title>
 <meta name="description" content="K Pruthvi Raj is a backend software engineer with 4+ years building scalable multi-tenant APIs in .NET Core, PostgreSQL and AWS across real estate and fleet management systems.">
-<meta name="theme-color" content="#12141a">
+<meta name="theme-color" content="#12141a" id="metaThemeColor">
+
+<!-- Theme bootstrap: runs before CSS paints to avoid a flash of the wrong theme.
+     Priority: saved user preference > system preference (this is a static site
+     with no backend/user-profile storage, so localStorage IS the persistence
+     layer described in the spec's "local storage if user profile storage is
+     unavailable" fallback). -->
+<script>
+  (function(){
+    try{
+      var pref = localStorage.getItem('theme-preference') || 'system';
+      var resolved = pref === 'system'
+        ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+        : pref;
+      document.documentElement.setAttribute('data-theme', resolved);
+      document.documentElement.setAttribute('data-theme-pref', pref);
+    }catch(e){
+      document.documentElement.setAttribute('data-theme', 'dark');
+      document.documentElement.setAttribute('data-theme-pref', 'system');
+    }
+  })();
+</script>
 
 <!-- Open Graph -->
 <meta property="og:title" content="K Pruthvi Raj — Backend Software Engineer">
@@ -17,6 +38,24 @@
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+  /*
+    THEME TOKENS
+    ------------
+    :root = Dark Theme = canonical baseline, values unchanged from the
+    original design. [data-theme="light"] overrides the same semantic
+    tokens with a newly-designed light palette — nothing here changes
+    spacing, layout, radius, or typography, only color.
+
+    --accent / --accent2   → brand color as used for TEXT, icons, borders.
+                              Value shifts per theme to stay WCAG AA on the
+                              page background (vivid on dark, deepened on light).
+    --accent-fill           → brand color as used for SOLID button fills.
+                              Stays vivid in both themes because it always
+                              pairs with --on-accent (dark) text on top of it.
+    --card-shadow / -hover  → elevation. None in dark (unchanged flat look);
+                              soft elevation in light (per spec: "premium SaaS
+                              appearance... proper elevation, subtle shadows").
+  */
   :root{
     --bg: #12141a;
     --panel: #191c23;
@@ -25,14 +64,74 @@
     --text: #edebe6;
     --text-dim: #8b909c;
     --text-faint: #5c6270;
+
     --accent: #e8a33d;
+    --accent-fill: #e8a33d;
     --accent-soft: rgba(232,163,61,0.12);
     --accent2: #5fb8b0;
     --accent2-soft: rgba(95,184,176,0.12);
+    --on-accent: #12141a;
+
+    --nav-glass: rgba(18,20,26,0.82);
+    --hover-overlay: rgba(255,255,255,0.015);
+    --shadow-color: rgba(0,0,0,0.5);
+    --card-shadow: none;
+    --card-shadow-hover: none;
+    --focus-ring: #5fb8b0;
+
+    --success: #5fb87d;
+    --warning: #e8c23d;
+    --danger: #e8746b;
+    --info: #5fb8b0;
+
     --radius: 10px;
     --mono: 'JetBrains Mono', ui-monospace, monospace;
     --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     --maxw: 1120px;
+  }
+
+  /* LIGHT THEME — newly designed, not an inversion. Soft neutral backgrounds,
+     white elevated cards, dark-gray (not black) text, deepened brand hues
+     for AA text contrast, same brand hue/radius/spacing as dark. */
+  [data-theme="light"]{
+    --bg: #f4f5f7;
+    --panel: #ffffff;
+    --panel-2: #f8f9fb;
+    --border: #e2e4ea;
+    --text: #20242c;
+    --text-dim: #5b6270;
+    --text-faint: #666c80;
+
+    --accent: #92590f;
+    --accent-fill: #e8a33d;
+    --accent-soft: rgba(146,89,15,0.09);
+    --accent2: #157b72;
+    --accent2-soft: rgba(21,123,114,0.09);
+    --on-accent: #16130c;
+
+    --nav-glass: rgba(255,255,255,0.82);
+    --hover-overlay: rgba(15,23,42,0.035);
+    --shadow-color: rgba(15,23,42,0.14);
+    --card-shadow: 0 1px 2px rgba(15,23,42,0.04), 0 6px 16px -8px rgba(15,23,42,0.08);
+    --card-shadow-hover: 0 2px 4px rgba(15,23,42,0.05), 0 14px 28px -10px rgba(15,23,42,0.12);
+    --focus-ring: #157b72;
+
+    --success: #1f8a4c;
+    --warning: #8a650d;
+    --danger: #b3362a;
+    --info: #157b72;
+  }
+
+  /* Enable theme-change transitions only after first paint (added by JS),
+     and only when the user hasn't asked for reduced motion. This avoids a
+     jarring cross-fade of the whole page on initial load while still making
+     manual theme switches feel smooth. */
+  @media (prefers-reduced-motion: no-preference){
+    html.theme-ready, html.theme-ready *{
+      transition: background-color .2s ease, color .2s ease,
+                  border-color .2s ease, box-shadow .2s ease,
+                  fill .2s ease, stroke .2s ease;
+    }
   }
 
   *{box-sizing:border-box; margin:0; padding:0;}
@@ -72,7 +171,13 @@
   ul{list-style:none;}
   img{max-width:100%; display:block;}
 
-  ::selection{background:var(--accent); color:#12141a;}
+  ::selection{background:var(--accent-fill); color:var(--on-accent);}
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--focus-ring);
+    outline-offset:3px;
+    border-radius:4px;
+  }
 
   .wrap{
     max-width:var(--maxw);
@@ -121,7 +226,7 @@
     position:sticky; top:0;
     z-index:50;
     backdrop-filter:blur(10px);
-    background:rgba(18,20,26,0.82);
+    background:var(--nav-glass);
     border-bottom:1px solid var(--border);
   }
   .nav-inner{
@@ -174,11 +279,53 @@
     transition:all .2s ease;
     white-space:nowrap;
   }
-  .nav-cta:hover{background:var(--accent); color:#12141a;}
+  .nav-cta:hover{background:var(--accent-fill); color:var(--on-accent);}
   .nav-toggle{display:none;}
+
+  .nav-right{
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+
+  .theme-switch{
+    display:flex;
+    align-items:center;
+    gap:2px;
+    padding:3px;
+    border:1px solid var(--border);
+    border-radius:8px;
+    background:var(--panel);
+  }
+  .theme-opt{
+    width:30px;
+    height:28px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:13px;
+    line-height:1;
+    border-radius:6px;
+    color:var(--text-faint);
+    transition:background .2s ease, color .2s ease;
+  }
+  .theme-opt:hover{color:var(--text-dim);}
+  .theme-opt[aria-checked="true"]{
+    background:var(--accent-soft);
+    color:var(--accent);
+  }
 
   @media (max-width:760px){
     .nav-links{display:none;}
+  }
+
+  @media (max-width:420px){
+    .nav-inner{padding:14px 16px; gap:8px;}
+    .nav-logo{font-size:14px;}
+    .nav-right{gap:8px;}
+    .nav-cta{padding:7px 12px; font-size:12px;}
+    .theme-switch{padding:2px; gap:1px;}
+    .theme-opt{width:25px; height:25px; font-size:12px;}
   }
 
   /* ---------- HERO ---------- */
@@ -228,7 +375,7 @@
     gap:8px;
     transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
   }
-  .btn-primary{background:var(--accent); color:#12141a; font-weight:600;}
+  .btn-primary{background:var(--accent-fill); color:var(--on-accent); font-weight:600;}
   .btn-primary:hover{transform:translateY(-2px); box-shadow:0 8px 20px -6px var(--accent-soft);}
   .btn-outline{border:1px solid var(--border); color:var(--text);}
   .btn-outline:hover{border-color:var(--accent2); color:var(--accent2); transform:translateY(-2px);}
@@ -244,13 +391,16 @@
   .hero-meta a{color:var(--text-dim); border-bottom:1px dotted var(--text-faint);}
   .hero-meta a:hover{color:var(--accent2); border-color:var(--accent2);}
 
-  /* Terminal panel */
+  /* Terminal panel — follows the site theme like every other component,
+     using the same semantic tokens (--panel, --border, --text, --accent).
+     Previously this was pinned to a fixed dark palette; changed on request
+     so Light mode gets a properly light "console" too, not a dark island. */
   .terminal{
     background:var(--panel);
     border:1px solid var(--border);
     border-radius:var(--radius);
     overflow:hidden;
-    box-shadow:0 20px 50px -20px rgba(0,0,0,0.5);
+    box-shadow:0 20px 50px -20px var(--shadow-color);
   }
   .terminal-bar{
     display:flex;
@@ -315,6 +465,7 @@
     border:1px solid var(--border);
     border-radius:var(--radius);
     background:var(--panel);
+    box-shadow:var(--card-shadow);
   }
   .stat-row{
     display:flex;
@@ -355,6 +506,7 @@
     border:1px solid var(--border);
     border-radius:var(--radius);
     overflow:hidden;
+    box-shadow:var(--card-shadow);
   }
   .schema-head{
     display:grid;
@@ -374,7 +526,7 @@
     border-bottom:1px solid var(--border);
   }
   .schema-group:last-child{border-bottom:none;}
-  .schema-group:hover{background:rgba(255,255,255,0.015);}
+  .schema-group:hover{background:var(--hover-overlay);}
   .schema-key{
     padding:18px 20px;
     font-family:var(--mono);
@@ -410,6 +562,7 @@
     border-radius:var(--radius);
     padding:32px;
     background:var(--panel);
+    box-shadow:var(--card-shadow);
   }
   .job-top{
     display:flex;
@@ -456,9 +609,10 @@
     padding:26px;
     display:flex;
     flex-direction:column;
-    transition:transform .2s ease, border-color .2s ease;
+    box-shadow:var(--card-shadow);
+    transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease;
   }
-  .project-card:hover{transform:translateY(-4px); border-color:var(--accent2);}
+  .project-card:hover{transform:translateY(-4px); border-color:var(--accent2); box-shadow:var(--card-shadow-hover);}
   .project-tag{
     font-family:var(--mono);
     font-size:11px;
@@ -510,6 +664,7 @@
     border-radius:var(--radius);
     padding:24px;
     background:var(--panel);
+    box-shadow:var(--card-shadow);
   }
   .edu-card h3, .cert-card h3{font-size:16px; font-family:var(--sans); font-weight:700; margin-bottom:6px;}
   .edu-meta{font-family:var(--mono); font-size:12.5px; color:var(--accent2); margin-bottom:10px;}
@@ -536,9 +691,10 @@
     border:1px solid var(--border);
     border-radius:var(--radius);
     background:var(--panel);
-    transition:border-color .2s ease;
+    box-shadow:var(--card-shadow);
+    transition:border-color .2s ease, box-shadow .2s ease;
   }
-  .contact-item:hover{border-color:var(--accent);}
+  .contact-item:hover{border-color:var(--accent); box-shadow:var(--card-shadow-hover);}
   .contact-item .k{
     font-family:var(--mono);
     font-size:11px;
@@ -558,6 +714,7 @@
     display:flex;
     flex-direction:column;
     justify-content:center;
+    box-shadow:var(--card-shadow);
   }
   .contact-cta h3{font-size:22px; margin-bottom:14px; font-family:var(--sans);}
   .contact-cta p{color:var(--text-dim); font-size:15px; margin-bottom:24px;}
@@ -610,7 +767,14 @@
       <button data-scroll="education">education</button>
       <button data-scroll="contact">contact</button>
     </nav>
-    <button data-scroll="contact" class="nav-cta">Contact →</button>
+    <div class="nav-right">
+      <div class="theme-switch" role="radiogroup" aria-label="Color theme">
+        <button type="button" class="theme-opt" data-theme-choice="light" role="radio" aria-checked="false" aria-label="Light theme">☀️</button>
+        <button type="button" class="theme-opt" data-theme-choice="system" role="radio" aria-checked="false" aria-label="Match system theme">💻</button>
+        <button type="button" class="theme-opt" data-theme-choice="dark" role="radio" aria-checked="false" aria-label="Dark theme">🌙</button>
+      </div>
+      <button data-scroll="contact" class="nav-cta">Contact →</button>
+    </div>
   </div>
 </header>
 
@@ -915,6 +1079,65 @@
 </footer>
 
 <script>
+  // ============================================================
+  // THEME CONTROLLER
+  // Modes: 'light' | 'dark' | 'system'. The initial resolved theme
+  // was already set synchronously in <head> (see the bootstrap script)
+  // to avoid a flash-of-wrong-theme; this block wires up the switch UI,
+  // reacts live to OS theme changes, and persists the choice.
+  //
+  // Persistence note: this is a static portfolio site with no backend
+  // or user accounts, so localStorage IS the persistence layer — there
+  // is no "saved user profile" tier above it to fall back from.
+  // ============================================================
+  const THEME_KEY = 'theme-preference';
+  const themeButtons = Array.from(document.querySelectorAll('.theme-opt'));
+  const metaThemeColor = document.getElementById('metaThemeColor');
+  const darkMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+  const THEME_COLOR = { dark: '#12141a', light: '#f4f5f7' };
+
+  function resolveTheme(pref){
+    return pref === 'system' ? (darkMediaQuery.matches ? 'dark' : 'light') : pref;
+  }
+
+  function applyTheme(pref){
+    const resolved = resolveTheme(pref);
+    document.documentElement.setAttribute('data-theme', resolved);
+    document.documentElement.setAttribute('data-theme-pref', pref);
+    if(metaThemeColor) metaThemeColor.setAttribute('content', THEME_COLOR[resolved]);
+
+    themeButtons.forEach(btn => {
+      const isActive = btn.getAttribute('data-theme-choice') === pref;
+      btn.setAttribute('aria-checked', String(isActive));
+    });
+
+    try{ localStorage.setItem(THEME_KEY, pref); }catch(e){ /* storage unavailable — theme still applies for this session */ }
+  }
+
+  // Initialize UI state to match whatever the bootstrap script already set,
+  // without re-triggering a transition on load.
+  applyTheme(document.documentElement.getAttribute('data-theme-pref') || 'system');
+
+  themeButtons.forEach(btn => {
+    btn.addEventListener('click', () => applyTheme(btn.getAttribute('data-theme-choice')));
+  });
+
+  // React immediately if the OS theme changes while "system" is selected —
+  // no page refresh required.
+  darkMediaQuery.addEventListener('change', () => {
+    if(document.documentElement.getAttribute('data-theme-pref') === 'system'){
+      applyTheme('system');
+    }
+  });
+
+  // Enable CSS transitions only after the first frame has painted, so the
+  // initial page load never visibly cross-fades — only manual theme
+  // switches (and live system-preference changes) do.
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    document.documentElement.classList.add('theme-ready');
+  }));
+
   // Terminal log animation
   const lines = [
     { m: 'POST', p: '/api/v1/tenants/{id}/vehicles/telemetry', s: '200 OK', t: '42ms' },
