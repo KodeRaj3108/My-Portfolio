@@ -3,8 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>K Pruthvi Raj — Backend Software Engineer | .NET, PostgreSQL, AWS</title>
-<meta name="description" content="K Pruthvi Raj is a backend software engineer with 4+ years building scalable multi-tenant APIs in .NET Core, PostgreSQL and AWS across real estate and fleet management systems.">
+
+<title>K Pruthvi Raj | Backend Software Engineer — .NET, PostgreSQL, AWS | Hyderabad</title>
+<meta name="description" content="K Pruthvi Raj is a backend software engineer in Hyderabad, India with 4+ years building scalable, multi-tenant REST APIs in ASP.NET Core, PostgreSQL and AWS across real estate and fleet-management systems.">
+<meta name="keywords" content="Backend Software Engineer Hyderabad, .NET Developer Hyderabad, ASP.NET Core Developer India, C# Developer, Backend API Developer, PostgreSQL Developer, AWS Backend Engineer, Software Architect, REST API Developer, Cloud Developer, Automation Engineer, Microservices Developer, Prompt Engineer, System Design, Software Engineer Portfolio">
+<meta name="author" content="K Pruthvi Raj">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="googlebot" content="index, follow">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="application-name" content="K Pruthvi Raj — Portfolio">
+<!-- Google Search Console verification: paste the code GSC gives you into
+     the content="" below, e.g. content="AbCdEf123...". Leave commented out
+     until you have a real code — an empty/fake tag would fail verification. -->
+<!-- <meta name="google-site-verification" content="PASTE_YOUR_CODE_HERE"> -->
+<link rel="canonical" href="https://koderaj3108.github.io/My-Portfolio/">
+
+<!-- Favicons -->
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="msapplication-config" content="browserconfig.xml">
+<meta name="msapplication-TileColor" content="#12141a">
 <meta name="theme-color" content="#12141a" id="metaThemeColor">
 
 <!-- Theme bootstrap: runs before CSS paints to avoid a flash of the wrong theme.
@@ -29,10 +50,28 @@
 </script>
 
 <!-- Open Graph -->
-<meta property="og:title" content="K Pruthvi Raj — Backend Software Engineer">
-<meta property="og:description" content="Backend-focused engineer building scalable, multi-tenant Web APIs in .NET Core, PostgreSQL and AWS.">
-<meta property="og:type" content="website">
+<meta property="og:title" content="K Pruthvi Raj | Backend Software Engineer">
+<meta property="og:description" content="Backend software engineer in Hyderabad with 4+ years building scalable, multi-tenant Web APIs in ASP.NET Core, PostgreSQL and AWS.">
+<meta property="og:type" content="profile">
+<meta property="og:url" content="https://koderaj3108.github.io/My-Portfolio/">
+<meta property="og:site_name" content="K Pruthvi Raj — Portfolio">
+<meta property="og:locale" content="en_IN">
+<meta property="og:image" content="https://koderaj3108.github.io/My-Portfolio/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="K Pruthvi Raj — Backend Software Engineer">
+<meta property="profile:first_name" content="Pruthvi Raj">
+<meta property="profile:last_name" content="K">
 
+<!-- Twitter Card (no confirmed X/Twitter handle on file, so twitter:site/creator are omitted rather than invented) -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="K Pruthvi Raj | Backend Software Engineer">
+<meta name="twitter:description" content="Backend software engineer in Hyderabad with 4+ years building scalable, multi-tenant Web APIs in ASP.NET Core, PostgreSQL and AWS.">
+<meta name="twitter:image" content="https://koderaj3108.github.io/My-Portfolio/assets/og-image.jpg">
+<meta name="twitter:image:alt" content="K Pruthvi Raj — Backend Software Engineer">
+
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//fonts.gstatic.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -168,10 +207,27 @@
   }
 
   a{color:inherit; text-decoration:none;}
+  address{font-style:normal;}
   ul{list-style:none;}
   img{max-width:100%; display:block;}
 
   ::selection{background:var(--accent-fill); color:var(--on-accent);}
+
+  .skip-link{
+    position:absolute;
+    top:-100px;
+    left:16px;
+    z-index:100;
+    background:var(--accent-fill);
+    color:var(--on-accent);
+    font-family:var(--mono);
+    font-size:13px;
+    font-weight:600;
+    padding:10px 18px;
+    border-radius:6px;
+    transition:top .15s ease;
+  }
+  .skip-link:focus{top:16px;}
 
   a:focus-visible, button:focus-visible{
     outline:2px solid var(--focus-ring);
@@ -343,6 +399,27 @@
     .hero-grid{grid-template-columns:1fr;}
   }
 
+  .hero-heading-row{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    margin-bottom:4px;
+  }
+  .hero-avatar{
+    width:96px;
+    height:96px;
+    border-radius:50%;
+    object-fit:cover;
+    object-position:50% 18%;
+    border:2px solid var(--border);
+    box-shadow:var(--card-shadow);
+    flex-shrink:0;
+  }
+  @media (max-width:520px){
+    .hero-heading-row{gap:14px;}
+    .hero-avatar{width:72px; height:72px;}
+  }
+
   .hero h1{
     font-size:clamp(34px, 5vw, 52px);
     line-height:1.12;
@@ -460,6 +537,21 @@
     max-width:64ch;
   }
   .about-body strong{color:var(--text); font-weight:600;}
+
+  .about-side{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+  }
+  .about-photo{
+    width:100%;
+    aspect-ratio:4/5;
+    object-fit:cover;
+    object-position:center 12%;
+    border-radius:var(--radius);
+    border:1px solid var(--border);
+    box-shadow:var(--card-shadow);
+  }
 
   .stat-block{
     border:1px solid var(--border);
@@ -753,13 +845,184 @@
     .hero{padding:64px 0 56px;}
   }
 </style>
+
+<!--
+  Structured data notes:
+  - "SoftwareEngineer", "Project" and "ProfessionalService" (requested in the
+    SEO brief) are not real schema.org types. Using invented type names would
+    produce structured data that fails Google's Rich Results validator and
+    could be treated as spam. Valid equivalents are used instead:
+      SoftwareEngineer → Person.jobTitle + a nested Occupation
+      Project          → CreativeWork (accurate, real schema.org type)
+      ProfessionalService → omitted (that type models a registered local
+                            business, which would misrepresent an individual)
+  - No SearchAction is included: the site has no working search feature,
+    and Google explicitly warns against markup for actions that don't exist.
+  - worksFor is omitted: the DataSpeaks Services role ended Jul 2025, and
+    schema.org's worksFor implies current employment — asserting that would
+    be inaccurate. Past employment is described in WorkExperience text only.
+-->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://koderaj3108.github.io/My-Portfolio/#website",
+      "url": "https://koderaj3108.github.io/My-Portfolio/",
+      "name": "K Pruthvi Raj — Portfolio",
+      "inLanguage": "en",
+      "publisher": { "@id": "https://koderaj3108.github.io/My-Portfolio/#person" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://koderaj3108.github.io/My-Portfolio/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://koderaj3108.github.io/My-Portfolio/"
+        }
+      ]
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": "https://koderaj3108.github.io/My-Portfolio/#webpage",
+      "url": "https://koderaj3108.github.io/My-Portfolio/",
+      "name": "K Pruthvi Raj | Backend Software Engineer — .NET, PostgreSQL, AWS",
+      "description": "Portfolio of K Pruthvi Raj, a backend software engineer in Hyderabad, India specializing in ASP.NET Core, PostgreSQL and AWS.",
+      "isPartOf": { "@id": "https://koderaj3108.github.io/My-Portfolio/#website" },
+      "breadcrumb": { "@id": "https://koderaj3108.github.io/My-Portfolio/#breadcrumb" },
+      "primaryImageOfPage": "https://koderaj3108.github.io/My-Portfolio/assets/og-image.jpg",
+      "mainEntity": { "@id": "https://koderaj3108.github.io/My-Portfolio/#person" },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://koderaj3108.github.io/My-Portfolio/#person",
+      "name": "K Pruthvi Raj",
+      "alternateName": "Pruthvi Raj K",
+      "url": "https://koderaj3108.github.io/My-Portfolio/",
+      "image": "https://koderaj3108.github.io/My-Portfolio/assets/profile-about.jpg",
+      "jobTitle": "Backend Software Engineer",
+      "description": "Backend-focused software engineer with 4+ years of experience designing and shipping scalable, multi-tenant Web APIs in ASP.NET Core, PostgreSQL and AWS across real estate and fleet-management systems.",
+      "email": "mailto:pruthvikode3108@gmail.com",
+      "telephone": "+91-97057-01581",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Hyderabad",
+        "addressRegion": "Telangana",
+        "addressCountry": "IN"
+      },
+      "sameAs": [
+        "https://github.com/KodeRaj3108",
+        "https://linkedin.com/in/pruthvi-raj-k-b13143104"
+      ],
+      "knowsAbout": [
+        "C#", ".NET Core", "ASP.NET Core", "ASP.NET Web API", "Entity Framework Core",
+        "PostgreSQL", "SQL", "Query Optimization", "REST API Design", "Microservices",
+        "AWS S3", "AWS Elastic Beanstalk", "Cloudflare", "Quartz.NET",
+        "TypeScript", "Blazor", ".NET MAUI", "Git", "System Design",
+        "Software Architecture", "Prompt Engineering", "Generative AI"
+      ],
+      "knowsLanguage": "en",
+      "alumniOf": [
+        {
+          "@type": "EducationalOrganization",
+          "name": "JNTU Hyderabad",
+          "address": { "@type": "PostalAddress", "addressLocality": "Hyderabad", "addressCountry": "IN" }
+        },
+        {
+          "@type": "EducationalOrganization",
+          "name": "Aurora's Scientific & Technological Institute",
+          "address": { "@type": "PostalAddress", "addressLocality": "Hyderabad", "addressCountry": "IN" }
+        }
+      ],
+      "hasCredential": {
+        "@type": "EducationalOccupationalCredential",
+        "credentialCategory": "certificate",
+        "name": "Generative AI Foundations & Prompt Engineering",
+        "recognizedBy": { "@type": "Organization", "name": "GenAI Masterminds (Outskill)" },
+        "dateCreated": "2026-07"
+      },
+      "hasOccupation": {
+        "@type": "Occupation",
+        "name": "Backend Software Engineer",
+        "occupationLocation": {
+          "@type": "City",
+          "name": "Hyderabad"
+        },
+        "skills": "C#, .NET Core, ASP.NET Core, PostgreSQL, AWS, Microservices, REST API design"
+      },
+      "makesOffer": {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Backend software engineering",
+          "description": "Available for backend engineering roles, freelance builds, and collaborations involving .NET Core, PostgreSQL and AWS."
+        }
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "professional",
+        "email": "pruthvikode3108@gmail.com",
+        "telephone": "+91-97057-01581",
+        "areaServed": "IN",
+        "availableLanguage": "en"
+      }
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://koderaj3108.github.io/My-Portfolio/#project-stagexps",
+      "name": "StageXPS — Multi-Tenant Real Estate CRM Platform",
+      "description": "Full-scale real estate platform covering CRM, finance and invoicing, with 15+ modeled entities for multi-tenant isolation.",
+      "creator": { "@id": "https://koderaj3108.github.io/My-Portfolio/#person" },
+      "about": "Real Estate SaaS"
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://koderaj3108.github.io/My-Portfolio/#project-archd",
+      "name": "Archd — Warehouse Management System",
+      "description": "Inventory and staging management system for RFID-tagged products with real-time tracking and role-based access control.",
+      "creator": { "@id": "https://koderaj3108.github.io/My-Portfolio/#person" },
+      "about": "Inventory Management / IoT"
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://koderaj3108.github.io/My-Portfolio/#project-fleet",
+      "name": "Fleet Management — GPS/OBD Telemetry Service",
+      "description": "Real-time ingestion service that parses and decodes hexadecimal GPS/OBD packets, with an automated Quartz.NET reporting pipeline.",
+      "creator": { "@id": "https://koderaj3108.github.io/My-Portfolio/#person" },
+      "about": "Fleet Management / Telemetry"
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://koderaj3108.github.io/My-Portfolio/#project-alumni",
+      "name": "Alumni Social Media App",
+      "description": "Cross-platform .NET MAUI app for iOS and Android with registration, news feeds and geolocation proximity features.",
+      "creator": { "@id": "https://koderaj3108.github.io/My-Portfolio/#person" },
+      "about": "Cross-Platform Mobile"
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://koderaj3108.github.io/My-Portfolio/#project-vod",
+      "name": "VoD Meter Desktop Application",
+      "description": "Blazor desktop application using the .NET SerialPort API to read and export live data from detonation meters.",
+      "creator": { "@id": "https://koderaj3108.github.io/My-Portfolio/#person" },
+      "about": "Desktop Application"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
+<a href="#main-content" class="skip-link">Skip to main content</a>
 <header class="nav">
   <div class="nav-inner">
     <button data-scroll="top" class="nav-logo">k<span>.</span>pruthvi<span>_</span>raj</button>
-    <nav class="nav-links">
+    <nav class="nav-links" aria-label="Primary">
       <button data-scroll="about">about</button>
       <button data-scroll="skills">skills</button>
       <button data-scroll="experience">experience</button>
@@ -779,13 +1042,30 @@
 </header>
 
 <main id="top">
+  <span id="main-content"></span>
 
   <!-- HERO -->
   <section class="hero">
     <div class="wrap hero-grid">
       <div>
-        <div class="eyebrow">backend software engineer · hyderabad, india</div>
-        <h1>K Pruthvi Raj</h1>
+        <div class="hero-heading-row">
+          <picture>
+            <source srcset="assets/profile-hero.webp" type="image/webp">
+            <img
+              class="hero-avatar"
+              src="assets/profile-hero.jpg"
+              alt="K Pruthvi Raj, backend software engineer"
+              width="96" height="96"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+            >
+          </picture>
+          <div>
+            <div class="eyebrow">backend software engineer · hyderabad, india</div>
+            <h1>K Pruthvi Raj</h1>
+          </div>
+        </div>
         <p class="hero-role">I design and ship scalable, multi-tenant Web APIs — the kind that keep working quietly in production while the business grows around them.</p>
         <div class="hero-tagline">"Backend systems that scale without drama."</div>
         <div class="hero-actions">
@@ -797,8 +1077,8 @@
           <span>·</span>
           <span>.NET Core / PostgreSQL / AWS</span>
           <span>·</span>
-          <a href="https://github.com/KodeRaj3108" target="_blank" rel="noopener">GitHub</a>
-          <a href="https://linkedin.com/in/pruthvi-raj-k-b13143104" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/KodeRaj3108" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://linkedin.com/in/pruthvi-raj-k-b13143104" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         </div>
       </div>
 
@@ -824,12 +1104,25 @@
           <p class="reveal">Before backend engineering, I trained as a <strong>mechanical engineer</strong> with a specialization in Energy Systems (M.Tech, CGPA 9.47) — a background that shows up in how I approach systems: as things with inputs, constraints, and measurable output, not just code.</p>
         </div>
       </div>
-      <div class="stat-block reveal">
-        <div class="stat-row"><span class="stat-label">Experience</span><span class="stat-value">4+ years</span></div>
-        <div class="stat-row"><span class="stat-label">Focus</span><span class="stat-value">Backend / APIs</span></div>
-        <div class="stat-row"><span class="stat-label">Stack</span><span class="stat-value">.NET · PostgreSQL · AWS</span></div>
-        <div class="stat-row"><span class="stat-label">Domains</span><span class="stat-value">RealEstate · Fleet</span></div>
-        <div class="stat-row"><span class="stat-label">Based in</span><span class="stat-value">Hyderabad, IN</span></div>
+      <div class="about-side">
+        <picture>
+          <source srcset="assets/profile-about.webp" type="image/webp">
+          <img
+            class="about-photo reveal"
+            src="assets/profile-about.jpg"
+            alt="K Pruthvi Raj, backend software engineer"
+            width="560" height="817"
+            loading="lazy"
+            decoding="async"
+          >
+        </picture>
+        <div class="stat-block reveal">
+          <div class="stat-row"><span class="stat-label">Experience</span><span class="stat-value">4+ years</span></div>
+          <div class="stat-row"><span class="stat-label">Focus</span><span class="stat-value">Backend / APIs</span></div>
+          <div class="stat-row"><span class="stat-label">Stack</span><span class="stat-value">.NET · PostgreSQL · AWS</span></div>
+          <div class="stat-row"><span class="stat-label">Domains</span><span class="stat-value">RealEstate · Fleet</span></div>
+          <div class="stat-row"><span class="stat-label">Based in</span><span class="stat-value">Hyderabad, IN</span></div>
+        </div>
       </div>
     </div>
   </section>
@@ -899,10 +1192,10 @@
         <h2 class="reveal">Where the work happened</h2>
       </div>
 
-      <div class="job reveal">
+      <article class="job reveal">
         <div class="job-top">
           <span class="job-role">Software Developer</span>
-          <span class="job-dates">May 2021 — Jul 2025</span>
+          <span class="job-dates"><time datetime="2021-05">May 2021</time> — <time datetime="2025-07">Jul 2025</time></span>
         </div>
         <div class="job-company">DataSpeaks Services Pvt. Ltd. <span>· Hyderabad, India</span></div>
         <ul>
@@ -915,7 +1208,7 @@
           <li><strong>Automated reporting with Quartz.NET</strong>, replacing manual report delivery with scheduled pipelines.</li>
           <li><strong>Owned deployments on AWS Elastic Beanstalk</strong>, coordinating release scope and timelines end-to-end.</li>
         </ul>
-      </div>
+      </article>
     </div>
   </section>
 
@@ -929,7 +1222,7 @@
       </div>
 
       <div class="project-grid">
-        <div class="project-card reveal">
+        <article class="project-card reveal">
           <span class="project-tag">Multi-tenant SaaS</span>
           <h3>StageXPS — Real Estate CRM Platform</h3>
           <div class="project-role">Lead Developer</div>
@@ -938,9 +1231,9 @@
             <li>Modeled 15+ entities via Visual Paradigm ERDs for clean multi-tenant isolation.</li>
             <li>Integrated AWS S3 + Cloudflare for document and media handling.</li>
           </ul>
-        </div>
+        </article>
 
-        <div class="project-card reveal">
+        <article class="project-card reveal">
           <span class="project-tag">Inventory / IoT</span>
           <h3>Archd — Warehouse Management System</h3>
           <div class="project-role">Developer</div>
@@ -948,9 +1241,9 @@
             <li>Real-time tracking for RFID-tagged inventory across staging areas.</li>
             <li>Role-based access control via ASP.NET Identity for warehouse operations security.</li>
           </ul>
-        </div>
+        </article>
 
-        <div class="project-card reveal">
+        <article class="project-card reveal">
           <span class="project-tag">Telemetry / IoT</span>
           <h3>Fleet Management — GPS/OBD Telemetry Service</h3>
           <div class="project-role">Developer</div>
@@ -958,9 +1251,9 @@
             <li>Real-time ingestion service parsing and decoding hexadecimal GPS/OBD packets.</li>
             <li>Automated Quartz.NET pipeline to retrieve and email historical vehicle data.</li>
           </ul>
-        </div>
+        </article>
 
-        <div class="project-card reveal">
+        <article class="project-card reveal">
           <span class="project-tag">Cross-platform</span>
           <h3>Alumni Social Media App</h3>
           <div class="project-role">Developer</div>
@@ -968,9 +1261,9 @@
             <li>Cross-platform .NET MAUI app for iOS and Android.</li>
             <li>Registration, news feeds, and geolocation-based proximity features.</li>
           </ul>
-        </div>
+        </article>
 
-        <div class="project-card reveal">
+        <article class="project-card reveal">
           <span class="project-tag">Desktop</span>
           <h3>VoD Meter Desktop Application</h3>
           <div class="project-role">Developer</div>
@@ -978,7 +1271,7 @@
             <li>Blazor desktop application using the .NET SerialPort API.</li>
             <li>Reads and exports live data streams from detonation meters.</li>
           </ul>
-        </div>
+        </article>
       </div>
     </div>
   </section>
@@ -992,19 +1285,19 @@
       </div>
 
       <div class="edu-grid">
-        <div class="edu-card reveal">
+        <article class="edu-card reveal">
           <h3>M.Tech, Energy Systems (Mechanical Engineering)</h3>
-          <div class="edu-meta">JNTU, Hyderabad · 2021</div>
+          <div class="edu-meta">JNTU, Hyderabad · <time datetime="2021">2021</time></div>
           <div class="edu-detail">CGPA 9.47</div>
-        </div>
-        <div class="edu-card reveal">
+        </article>
+        <article class="edu-card reveal">
           <h3>B.Tech, Mechanical Engineering</h3>
-          <div class="edu-meta">Aurora's Scientific & Technological Institute, Hyderabad · 2016</div>
+          <div class="edu-meta">Aurora's Scientific & Technological Institute, Hyderabad · <time datetime="2016">2016</time></div>
           <div class="edu-detail">70.3%</div>
-        </div>
-        <div class="cert-card reveal">
+        </article>
+        <article class="cert-card reveal">
           <h3>Generative AI Foundations & Prompt Engineering</h3>
-          <div class="edu-meta">GenAI Masterminds, Outskill · July 2026</div>
+          <div class="edu-meta">GenAI Masterminds, Outskill · <time datetime="2026-07">July 2026</time></div>
           <div class="edu-detail">Beginner-level certification covering LLM fundamentals.</div>
           <div class="cert-skills">
             <span class="chip">Generative AI</span>
@@ -1015,7 +1308,7 @@
             <span class="chip">Embeddings</span>
             <span class="chip">Context Engineering</span>
           </div>
-        </div>
+        </article>
       </div>
     </div>
   </section>
@@ -1030,7 +1323,7 @@
       </div>
 
       <div class="contact-wrap">
-        <div class="contact-list reveal">
+        <address class="contact-list reveal">
           <div class="contact-item">
             <span class="k">Email</span>
             <a class="v" href="mailto:pruthvikode3108@gmail.com">pruthvikode3108@gmail.com</a>
@@ -1045,13 +1338,13 @@
           </div>
           <div class="contact-item">
             <span class="k">LinkedIn</span>
-            <a class="v" href="https://linkedin.com/in/pruthvi-raj-k-b13143104" target="_blank" rel="noopener">linkedin.com/in/pruthvi-raj-k-b13143104</a>
+            <a class="v" href="https://linkedin.com/in/pruthvi-raj-k-b13143104" target="_blank" rel="noopener noreferrer">linkedin.com/in/pruthvi-raj-k-b13143104</a>
           </div>
           <div class="contact-item">
             <span class="k">GitHub</span>
-            <a class="v" href="https://github.com/KodeRaj3108" target="_blank" rel="noopener">github.com/KodeRaj3108</a>
+            <a class="v" href="https://github.com/KodeRaj3108" target="_blank" rel="noopener noreferrer">github.com/KodeRaj3108</a>
           </div>
-        </div>
+        </address>
 
         <div class="contact-cta reveal">
           <h3>Have a role or project in mind?</h3>
@@ -1070,9 +1363,9 @@
 <footer>
   <div class="wrap footer-inner">
     <span>© 2026 K Pruthvi Raj. Built with intent, not a template.</span>
-    <div class="footer-links">
-      <a href="https://github.com/KodeRaj3108" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://linkedin.com/in/pruthvi-raj-k-b13143104" target="_blank" rel="noopener">LinkedIn</a>
+    <div class="footer-links" aria-label="Footer">
+      <a href="https://github.com/KodeRaj3108" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://linkedin.com/in/pruthvi-raj-k-b13143104" target="_blank" rel="noopener noreferrer">LinkedIn</a>
       <button data-scroll="top" class="back-to-top">↑ Top</button>
     </div>
   </div>
