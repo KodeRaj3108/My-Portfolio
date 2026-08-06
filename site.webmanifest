@@ -1,0 +1,37 @@
+{
+  "name": "K Pruthvi Raj — Backend Software Engineer Portfolio",
+  "short_name": "K Pruthvi Raj",
+  "description": "Portfolio of K Pruthvi Raj, a backend software engineer building scalable multi-tenant APIs in .NET Core, PostgreSQL and AWS.",
+  "start_url": "/My-Portfolio/",
+  "scope": "/My-Portfolio/",
+  "display": "browser",
+  "orientation": "portrait-primary",
+  "lang": "en",
+  "dir": "ltr",
+  "theme_color": "#12141a",
+  "background_color": "#12141a",
+  "icons": [
+    {
+      "src": "assets/icons/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

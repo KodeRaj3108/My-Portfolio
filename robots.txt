@@ -1,0 +1,7 @@
+# https://koderaj3108.github.io/My-Portfolio/
+# This is a single-page portfolio site — everything is open to crawl.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://koderaj3108.github.io/My-Portfolio/sitemap.xml
